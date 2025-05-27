@@ -3,14 +3,21 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Botão Área do Aluno (desktop e mobile)
-    document.querySelectorAll('button, .mobile-menu button').forEach(btn => {
-        if (btn.textContent.includes('Área do Aluno')) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                exibirTelaLogin();
-            });
-        }
-    });
+    function bindAlunoButtons() {
+        document.querySelectorAll('button, .mobile-menu button').forEach(btn => {
+            if (btn.textContent.includes('Área do Aluno') && !btn.dataset.bound) {
+                btn.dataset.bound = '1';
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    exibirTelaLogin();
+                });
+            }
+        });
+    }
+    bindAlunoButtons();
+    // Re-bind após abrir menu mobile
+    const observer = new MutationObserver(bindAlunoButtons);
+    observer.observe(document.body, { childList: true, subtree: true });
 
     // Botão Começar Agora (hero e CTA)
     document.querySelectorAll('button').forEach(btn => {
@@ -61,37 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // --- NOVO LOGIN FUNCIONAL E ÁREA DO ALUNO EM NOVA JANELA ---
-
-window.addEventListener('DOMContentLoaded', function() {
-    if (!sessionStorage.getItem('logadoSite')) {
-        removerModais();
-        const modal = document.createElement('div');
-        modal.id = 'modal-login-site';
-        modal.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:100000;';
-        modal.innerHTML = `
-          <div style="background:#fff;padding:2.5rem 2.5rem 2rem 2.5rem;border-radius:18px;max-width:370px;width:100%;position:relative;box-shadow:0 8px 32px #0002;">
-            <h2 style="font-size:1.7rem;font-weight:bold;margin-bottom:1.5rem;text-align:center;color:#6B46C1;">Acesso Restrito</h2>
-            <form id="form-login-site">
-              <input id="site-email" type="email" required placeholder="E-mail" autocomplete="username" style="width:100%;padding:0.85rem;margin-bottom:1rem;border:1px solid #ccc;border-radius:8px;font-size:1rem;">
-              <input id="site-senha" type="password" required placeholder="Senha" autocomplete="current-password" style="width:100%;padding:0.85rem;margin-bottom:1.5rem;border:1px solid #ccc;border-radius:8px;font-size:1rem;">
-              <button type="submit" style="width:100%;background:#6B46C1;color:#fff;padding:0.85rem;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;">Entrar</button>
-            </form>
-          </div>
-        `;
-        document.body.appendChild(modal);
-        document.getElementById('form-login-site').onsubmit = function(ev) {
-            ev.preventDefault();
-            const email = document.getElementById('site-email').value.trim();
-            const senha = document.getElementById('site-senha').value.trim();
-            if (validarLoginAluno(email, senha)) {
-                sessionStorage.setItem('logadoSite', '1');
-                modal.remove();
-            } else {
-                alert('E-mail ou senha inválidos!');
-            }
-        };
-    }
-});
 
 function exibirTelaLogin() {
     removerModais();
@@ -242,7 +218,7 @@ function exibirAreaAluno() {
         <ul style="list-style:none;padding:0;margin:0 0 1.5rem 0;">
           <li style="background:#f3f3f3;padding:0.75rem 1rem;border-radius:8px;margin-bottom:0.5rem;">Vendas Automatizadas</li>
           <li style="background:#f3f3f3;padding:0.75rem 1rem;border-radius:8px;margin-bottom:0.5rem;">Copywriting de Alta Conversão</li>
-          <li style="background:#f3f3f3;padding:0.75rem 1rem;border-radius:8px;">Tráfego Pago para Iniciantes</li>
+          <li style="background:#f3f3f3;padding:0.75rem 1rem;border-radius:8px;margin-bottom:0.5rem;">Tráfego Pago para Iniciantes</li>
         </ul>
         <button style="width:100%;background:#6B46C1;color:#fff;padding:0.75rem;border:none;border-radius:8px;font-weight:bold;font-size:1rem;" onclick="location.reload()">Sair</button>
       </div>
