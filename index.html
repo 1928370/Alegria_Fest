@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwify Academy - Acesso aos Cursos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6B46C1 0%, #4299E1 100%);
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-gem text-2xl"></i>
+                    <h1 class="text-2xl font-bold">Kiwify Academy</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="hover:text-purple-200 transition scroll-link">Início</a>
+                    <a href="#features" class="hover:text-purple-200 transition scroll-link">Por que Kiwify?</a>
+                    <a href="#mentoria" class="hover:text-purple-200 transition scroll-link">Mentoria</a>
+                    <a href="#contato" class="hover:text-purple-200 transition scroll-link">Contato</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block bg-white text-purple-800 px-4 py-2 rounded-lg font-medium hover:bg-purple-100 transition">
+                        Área do Aluno
+                    </button>
+                    <button class="md:hidden text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="gradient-bg text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforme seu conhecimento em renda com a Kiwify</h1>
+                    <p class="text-xl mb-8 opacity-90">Acesse nossos cursos premium e aprenda a criar, vender e escalar produtos digitais de sucesso.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-white text-purple-800 px-6 py-3 rounded-lg font-bold hover:bg-purple-100 transition">
+                            Começar Agora <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <button class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-purple-800 transition">
+                            <i class="fas fa-play mr-2"></i> Ver Vídeo
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="video-container rounded-xl overflow-hidden shadow-2xl">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Por que escolher a Kiwify Academy?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Nossa plataforma foi desenvolvida para te oferecer a melhor experiência de aprendizado.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lock text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Acesso Vitalício</h3>
+                    <p class="text-gray-600">Compre uma vez e tenha acesso para sempre, com todas as atualizações futuras incluídas.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-headset text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Suporte Exclusivo</h3>
+                    <p class="text-gray-600">Nossa equipe está disponível para te ajudar em todas as etapas da sua jornada.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-certificate text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Certificado Reconhecido</h3>
+                    <p class="text-gray-600">Ao concluir qualquer curso, você recebe um certificado digital para comprovar seu conhecimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">O que nossos alunos dizem</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Veja os resultados reais de quem já aplicou nossos métodos.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Carlos Silva</h4>
+                            <p class="text-sm text-gray-500">Aluno desde 2022</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600">"Depois do curso de tráfego pago, consegui aumentar minhas vendas na Kiwify em 300%. O investimento no curso se pagou na primeira semana!"</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ana Oliveira</h4>
+                            <p class="text-sm text-gray-500">Aluna desde 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600">"O curso de copywriting mudou completamente como eu me comunico com meus clientes. Agora minhas páginas de vendas convertem muito mais!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentoria Section -->
+    <section id="mentoria" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Mentoria Exclusiva</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-8">Tenha acompanhamento individual com nossos especialistas para acelerar seus resultados.</p>
+            <button class="bg-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-700 transition">Quero Mentoria</button>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Pronto para transformar seu conhecimento em renda?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Junte-se a milhares de alunos que já estão vendendo seus produtos digitais com sucesso na Kiwify.</p>
+            <button class="bg-white text-purple-800 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-100 transition">
+                Começar Agora <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12" id="contato">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-gem text-2xl text-purple-400"></i>
+                        <h3 class="text-xl font-bold">Kiwify Academy</h3>
+                    </div>
+                    <p class="text-gray-400">A plataforma de cursos definitiva para quem quer vender produtos digitais com sucesso.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Cursos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Todos os Cursos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Lançamentos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mais Populares</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Ofertas Especiais</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Institucional</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sobre Nós</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Trabalhe Conosco</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Termos de Uso</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">contato@kiwifyacademy.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">(11) 98765-4321</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">São Paulo, Brasil</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2023 Kiwify Academy. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden.text-2xl');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'hidden bg-white shadow-lg rounded-lg p-4 absolute right-4 top-20 z-50 w-64';
+            mobileMenu.innerHTML = `
+                <nav class="flex flex-col space-y-4">
+                    <a href="#inicio" class="hover:text-purple-600 transition scroll-link">Início</a>
+                    <a href="#features" class="hover:text-purple-600 transition scroll-link">Por que Kiwify?</a>
+                    <a href="#mentoria" class="hover:text-purple-600 transition scroll-link">Mentoria</a>
+                    <a href="#contato" class="hover:text-purple-600 transition scroll-link">Contato</a>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition">
+                        Área do Aluno
+                    </button>
+                </nav>
+            `;
+            document.body.appendChild(mobileMenu);
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+            // Scroll suave para links
+            document.querySelectorAll('.scroll-link').forEach(link => {
+                link.addEventListener('click', function(ev) {
+                    ev.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) target.scrollIntoView({behavior:'smooth'});
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
