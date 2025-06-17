@@ -3,301 +3,744 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiwify Academy - Acesso aos Cursos</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Alegria Fest - Eventos Memoráveis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #6B46C1 0%, #4299E1 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        /* Gradiente animado mais suave e moderno no fundo do body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #fbc2eb 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 12s ease-in-out infinite;
         }
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        @keyframes gradientMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
         }
-        .video-container {
+
+        /* Navbar com visual mais clean e elegante */
+        nav {
+            background: rgba(255,255,255,0.85) !important;
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.08);
+            border-bottom: 2px solid #6366f1;
+        }
+        nav a, nav button {
+            color: #312e81 !important;
+            text-shadow: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.2s, border-bottom 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav button:hover {
+            color: #6366f1 !important;
+            border-bottom: 2px solid #6366f1;
+            background: none;
+        }
+
+        /* HERO com gradiente azul-violeta e detalhes modernos */
+        .hero-gradient {
+            background: linear-gradient(120deg, #6366f1 0%, #a5b4fc 100%);
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
             overflow: hidden;
         }
-        .video-container iframe {
+        .hero-gradient::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -80px; left: -80px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #fbc2eb 0%, #6366f1 80%, transparent 100%);
+            opacity: 0.18;
+            filter: blur(16px);
+            z-index: 0;
+        }
+        .hero-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; right: -100px;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, #a5b4fc 0%, #fbc2eb 80%, transparent 100%);
+            opacity: 0.12;
+            filter: blur(18px);
+            z-index: 0;
+        }
+        .hero-gradient h1 {
+            text-shadow: 0 2px 12px #6366f1, 0 1px 4px #fff;
+            letter-spacing: 1.5px;
+        }
+        .hero-gradient p {
+            text-shadow: 0 1px 4px #fff;
+        }
+        .hero-gradient .flex a {
+            box-shadow: 0 2px 12px #6366f1a0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border: none;
+            background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%);
+            color: #fff !important;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-gradient .flex a:hover {
+            background: linear-gradient(90deg, #fbc2eb 0%, #6366f1 100%);
+            color: #6366f1 !important;
+            transform: scale(1.07) translateY(-2px);
+            box-shadow: 0 8px 32px #6366f1b0;
+        }
+
+        /* SERVICE CARDS com glassmorphism e borda azul animada */
+        .service-card {
+            background: rgba(255,255,255,0.85);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 0 4px 24px 0 rgba(99,102,241,0.08);
+            transition: border 0.3s, box-shadow 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            z-index: 0;
+            border-radius: 1.25rem;
+            background: linear-gradient(120deg, #6366f1, #a5b4fc, #fbc2eb, #6366f1);
+            background-size: 300% 300%;
+            animation: borderMove 8s linear infinite;
+            opacity: 0.5;
+        }
+        .service-card > * { position: relative; z-index: 1; }
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 12px 32px -5px #6366f155, 0 6px 12px -5px #a5b4fc55;
+        }
+        @keyframes borderMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        /* PERSONAGENS com efeito pop e sombra azul-violeta */
+        .personagem-card {
+            background: rgba(245,245,255,0.95);
+            border-radius: 1.25rem;
+            box-shadow: 0 2px 12px 0 #a5b4fc80;
+            border: 2px solid #6366f1;
+            transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+        }
+        .personagem-card:hover {
+            transform: scale(1.09) rotate(-2deg);
+            box-shadow: 0 8px 32px 0 #6366f1cc;
+            border-color: #fbc2eb;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(120deg, #312e81 0%, #6366f1 100%);
+            color: #fff;
+        }
+        footer a {
+            text-shadow: none;
+            color: #a5b4fc;
+        }
+        footer a:hover {
+            color: #fbc2eb;
+            text-shadow: 0 0 8px #fbc2ebcc;
+        }
+        /* MODAIS */
+        .policy-modal {
+            transition: all 0.3s ease;
+        }
+        .policy-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: #fffde4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(120deg, #ff9800 0%, #f44336 100%);
+            border-radius: 8px;
+        }
+
+        /* Inputs e selects do formulário com foco azul */
+        input, select, textarea {
+            background: rgba(255,255,255,0.95) !important;
+            border-radius: 0.75rem !important;
+            border: 1.5px solid #a5b4fc !important;
+            box-shadow: 0 2px 8px 0 #6366f122;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border: 2px solid #6366f1 !important;
+            box-shadow: 0 4px 16px 0 #6366f144;
+        }
+
+        /* Botão da galeria com gradiente azul e efeito especial */
+        .gallery-btn {
+            background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%);
+            color: #fff;
+            box-shadow: 0 4px 24px 0 #6366f180;
+            border: none;
+            font-size: 1.25rem;
+            font-weight: bold;
+            padding: 1.25rem 3rem;
+            border-radius: 9999px;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .gallery-btn:hover {
+            transform: scale(1.06) translateY(-2px);
+            box-shadow: 0 8px 32px 0 #6366f1cc;
+            background: linear-gradient(90deg, #fbc2eb 0%, #6366f1 100%);
+        }
+
+        /* Títulos e textos principais com azul escuro */
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #312e81;
+        }
+        /* Detalhes animados decorativos em azul */
+        .decor-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #a5b4fc);
+            box-shadow: 0 0 16px #6366f1cc;
+            animation: decorDotMove 2.5s infinite alternate;
+        }
+        @keyframes decorDotMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
         }
     </style>
 </head>
-<body class="font-sans antialiased text-gray-800 bg-gray-50">
-    <!-- Header -->
-    <header class="gradient-bg text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-gem text-2xl"></i>
-                    <h1 class="text-2xl font-bold">Kiwify Academy</h1>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="img/logo.png" alt="Alegria Fest" class="h-12">
                 </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#inicio" class="hover:text-purple-200 transition scroll-link">Início</a>
-                    <a href="#features" class="hover:text-purple-200 transition scroll-link">Por que Kiwify?</a>
-                    <a href="#mentoria" class="hover:text-purple-200 transition scroll-link">Mentoria</a>
-                    <a href="#contato" class="hover:text-purple-200 transition scroll-link">Contato</a>
-                </nav>
-                <div class="flex items-center space-x-4">
-                    <button class="hidden md:block bg-white text-purple-800 px-4 py-2 rounded-lg font-medium hover:bg-purple-100 transition">
-                        Área do Aluno
-                    </button>
-                    <button class="md:hidden text-2xl">
-                        <i class="fas fa-bars"></i>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="text-gray-900 hover:text-orange-500 px-3 py-2 font-medium">Home</a>
+                        <a href="#services" class="text-gray-900 hover:text-orange-500 px-3 py-2 font-medium">Serviços</a>
+                        <a href="#gallery" class="text-gray-900 hover:text-orange-500 px-3 py-2 font-medium">Galeria</a>
+                        <a href="#contact" class="text-gray-900 hover:text-orange-500 px-3 py-2 font-medium">Contato</a>
+                        <button onclick="openPolicyModal()" class="text-gray-900 hover:text-orange-500 px-3 py-2 font-medium">Políticas</button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-900 hover:text-orange-500 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-    </header>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-gray-900 hover:text-orange-500 font-medium">Home</a>
+                <a href="#services" class="block px-3 py-2 text-gray-900 hover:text-orange-500 font-medium">Serviços</a>
+                <a href="#gallery" class="block px-3 py-2 text-gray-900 hover:text-orange-500 font-medium">Galeria</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-900 hover:text-orange-500 font-medium">Contato</a>
+                <button onclick="openPolicyModal()" class="block px-3 py-2 text-gray-900 hover:text-orange-500 font-medium text-left w-full">Políticas</button>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="gradient-bg text-white py-16 md:py-24">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
+    <section id="home" class="hero-gradient pt-32 pb-20 md:pt-40 md:pb-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="md:flex items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforme seu conhecimento em renda com a Kiwify</h1>
-                    <p class="text-xl mb-8 opacity-90">Acesse nossos cursos premium e aprenda a criar, vender e escalar produtos digitais de sucesso.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button class="bg-white text-purple-800 px-6 py-3 rounded-lg font-bold hover:bg-purple-100 transition">
-                            Começar Agora <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                        <button class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-purple-800 transition">
-                            <i class="fas fa-play mr-2"></i> Ver Vídeo
-                        </button>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg animate-pulse">Crie momentos inesquecíveis com a <span class="text-yellow-300">Alegria Fest</span></h1>
+                    <p class="text-xl text-white mb-8 font-medium animate-fade-in">Transformamos seus eventos em experiências mágicas e memoráveis com planejamento criativo e execução impecável.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/alegriafest_/" target="_blank" class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white px-8 py-4 rounded-full font-extrabold shadow-xl transition duration-300 border-2 border-transparent flex items-center gap-2 animate-glow hover:from-indigo-500 hover:to-pink-500">
+                            <i class="fab fa-instagram text-2xl"></i> Acesse nosso Instagram
+                        </a>
+                        <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-orange-500 px-8 py-4 rounded-full font-extrabold shadow-xl transition duration-300 animate-glow">Nossos Serviços</a>
                     </div>
                 </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-8 -left-8 w-40 h-40 bg-yellow-200 rounded-full opacity-60 blur-xl animate-bounce"></div>
+                        <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-pink-200 rounded-full opacity-60 blur-xl animate-bounce"></div>
+                        <img src="img/evento.png" alt="Evento Alegria Fest" class="relative rounded-3xl shadow-2xl w-full border-4 border-white animate-float">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nossos Serviços</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Oferecemos soluções completas para tornar seu evento único e especial</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-birthday-cake text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Festas Infantis</h3>
+                    <p class="text-gray-600">Crie memórias mágicas para os pequenos com temas personalizados, decoração encantadora e entretenimento criativo.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-glass-cheers text-pink-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Casamentos</h3>
+                    <p class="text-gray-600">Planejamento completo para o dia mais especial da sua vida, desde a cerimônia até a recepção inesquecível.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Eventos Corporativos</h3>
+                    <p class="text-gray-600">Soluções profissionais para confraternizações, convenções e lançamentos que impressionam seus colaboradores e clientes.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-music text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Shows e Festivais</h3>
+                    <p class="text-gray-600">Produção completa de eventos musicais com estrutura de palco, som, iluminação e toda logística necessária.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-utensils text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Buffet Completo</h3>
+                    <p class="text-gray-600">Cardápios personalizados e sofisticados preparados por chefs experientes para impressionar seus convidados.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Decoração Temática</h3>
+                    <p class="text-gray-600">Ambientes transformados com criatividade e atenção aos detalhes para criar a atmosfera perfeita para seu evento.</p>
+                </div>
+            </div>
+
+            <!-- Espaço extra entre Serviços e Eventos -->
+            <div class="h-20"></div>
+
+            <!-- New Events Section -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nossos Eventos</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Atuamos em diversos tipos de eventos e oferecemos personagens para animar sua festa!</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Evento 1 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300 border-l-8 border-orange-400 hover:border-orange-600">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-birthday-cake text-orange-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Aniversário</h3>
+                    <p class="text-gray-600 font-medium">Festas infantis e adultas com muita diversão, decoração temática e atrações especiais.</p>
+                </div>
+                <!-- Evento 2 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300 border-l-8 border-blue-400 hover:border-blue-600">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-store text-blue-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Porta de Loja</h3>
+                    <p class="text-gray-600 font-medium">Atraia clientes para sua loja com personagens, música, balões e muita animação.</p>
+                </div>
+                <!-- Evento 3 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300 border-l-8 border-pink-400 hover:border-pink-600">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-heart text-pink-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Casamento</h3>
+                    <p class="text-gray-600 font-medium">Celebre o amor com organização, decoração e entretenimento para todas as idades.</p>
+                </div>
+                <!-- Evento 4 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-8 transition duration-300 border-l-8 border-green-400 hover:border-green-600">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-child text-green-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Recreação</h3>
+                    <p class="text-gray-600 font-medium">Brincadeiras, gincanas, oficinas e atividades para crianças de todas as idades.</p>
+                </div>
+            </div>
+
+            <!-- Characters Section -->
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Personagens para seu Evento</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Deixe sua festa ainda mais divertida com a presença dos nossos personagens!</p>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="personagem-card p-6 flex flex-col items-center w-44 hover:scale-105 transition">
+                        <img src="img/fofão.png" alt="Fofão" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-orange-200 shadow-xl">
+                        <span class="font-extrabold text-lg text-gray-900 mt-2">Fofão</span>
+                    </div>
+                    <div class="personagem-card p-6 flex flex-col items-center w-44 hover:scale-105 transition">
+                        <img src="img/Mickey.jpg" alt="Mickey" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-blue-200 shadow-xl">
+                        <span class="font-extrabold text-lg text-gray-900 mt-2">Mickey</span>
+                    </div>
+                    <div class="personagem-card p-6 flex flex-col items-center w-44 hover:scale-105 transition">
+                        <img src="img/luigi.jpg" alt="Luigi" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-green-200 shadow-xl">
+                        <span class="font-extrabold text-lg text-gray-900 mt-2">Luigi</span>
+                    </div>
+                    <div class="personagem-card p-6 flex flex-col items-center w-44 hover:scale-105 transition">
+                        <img src="img/mario.jpg" alt="Mario" class="w-20 h-20 mb-3 rounded-full object-cover border-4 border-pink-200 shadow-xl">
+                        <span class="font-extrabold text-lg text-gray-900 mt-2">Mario</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nossa Galeria</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">Veja mais fotos e momentos especiais dos nossos eventos no nosso Google Drive!</p>
+                <a href="https://drive.google.com/drive/folders/SEU_LINK_AQUI" target="_blank" class="gallery-btn">
+                    Acessar Galeria Completa
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Estamos prontos para transformar seu evento em uma experiência inesquecível</p>
+            </div>
+            
+            <div class="md:flex">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Informações de Contato</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-orange-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Endereço</h4>
+                                <p class="text-gray-600">Rua Elvira Cascão 291 - Novo Horizonte, Araguari-MG</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-orange-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Telefone</h4>
+                                <p class="text-gray-600">(34) 9 9249-9921</p>
+                                <p class="text-gray-600">(34) 9 9249-9921 (WhatsApp)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-orange-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Email</h4>
+                                <p class="text-gray-600">arailtonjunior@outlook.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-orange-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Horário de Atendimento</h4>
+                                <p class="text-gray-600">Segunda a Sexta: 9h às 18h</p>
+                                <p class="text-gray-600">Sábado: 9h às 13h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="md:w-1/2">
-                    <div class="video-container rounded-xl overflow-hidden shadow-2xl">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Envie sua Mensagem</h3>
+                        <form id="contact-form">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nome Completo</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="event-type" class="block text-gray-700 font-medium mb-2">Tipo de Evento</label>
+                                <select id="event-type" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                    <option value="">Selecione...</option>
+                                    <option value="casamento">Casamento</option>
+                                    <option value="festa-infantil">Festa Infantil</option>
+                                    <option value="evento-corporativo">Evento Corporativo</option>
+                                    <option value="show">Show/Festival</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">Enviar Mensagem</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Por que escolher a Kiwify Academy?</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Nossa plataforma foi desenvolvida para te oferecer a melhor experiência de aprendizado.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-md text-center">
-                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-lock text-purple-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Acesso Vitalício</h3>
-                    <p class="text-gray-600">Compre uma vez e tenha acesso para sempre, com todas as atualizações futuras incluídas.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-md text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-headset text-blue-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Suporte Exclusivo</h3>
-                    <p class="text-gray-600">Nossa equipe está disponível para te ajudar em todas as etapas da sua jornada.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-md text-center">
-                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-certificate text-green-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Certificado Reconhecido</h3>
-                    <p class="text-gray-600">Ao concluir qualquer curso, você recebe um certificado digital para comprovar seu conhecimento.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">O que nossos alunos dizem</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Veja os resultados reais de quem já aplicou nossos métodos.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-purple-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Carlos Silva</h4>
-                            <p class="text-sm text-gray-500">Aluno desde 2022</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-600">"Depois do curso de tráfego pago, consegui aumentar minhas vendas na Kiwify em 300%. O investimento no curso se pagou na primeira semana!"</p>
-                </div>
-                
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Ana Oliveira</h4>
-                            <p class="text-sm text-gray-500">Aluna desde 2023</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p class="text-gray-600">"O curso de copywriting mudou completamente como eu me comunico com meus clientes. Agora minhas páginas de vendas convertem muito mais!"</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mentoria Section -->
-    <section id="mentoria" class="py-16 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Mentoria Exclusiva</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mb-8">Tenha acompanhamento individual com nossos especialistas para acelerar seus resultados.</p>
-            <button class="bg-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-700 transition">Quero Mentoria</button>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 gradient-bg text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6">Pronto para transformar seu conhecimento em renda?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Junte-se a milhares de alunos que já estão vendendo seus produtos digitais com sucesso na Kiwify.</p>
-            <button class="bg-white text-purple-800 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-100 transition">
-                Começar Agora <i class="fas fa-arrow-right ml-2"></i>
-            </button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12" id="contato">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i class="fas fa-gem text-2xl text-purple-400"></i>
-                        <h3 class="text-xl font-bold">Kiwify Academy</h3>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-8 md:mb-0 flex flex-col items-start">
+                    <img src="img/mobile.png" alt="Mobile Vision" class="h-36 mb-4 drop-shadow-lg">
+                    <p class="max-w-xs text-lg font-medium">Transformando ideias em soluções digitais.<br>Fotografia, Videografia, Edição, Criação de Site</p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                    <div>
+                        <h3 class="text-lg font-extrabold mb-3 tracking-wide text-white">Instagram</h3>
+                        <div class="flex flex-col gap-2">
+                            <a href="https://www.instagram.com/mobilevision4/" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full font-bold text-sm bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-md hover:from-indigo-500 hover:to-pink-500 transition-all duration-300">
+                                <i class="fab fa-instagram text-base"></i> Instagram
+                            </a>
+                            <a href="https://1928370.github.io/Postfolio/?fbclid=PAZXh0bgNhZW0CMTEAAafhoIzJNPCN5MZMTk5HIkcHP9zR4i8trds0bhKMu4Wsjqcssnt9MCRe4CZPWQ_aem_R0sThB69xzXqTUbXAdSkxg" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full font-bold text-sm bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-md hover:from-pink-500 hover:to-indigo-500 transition-all duration-300">
+                                <i class="fas fa-user-circle text-base"></i> Portfólio do Criador
+                            </a>
+                        </div>
                     </div>
-                    <p class="text-gray-400">A plataforma de cursos definitiva para quem quer vender produtos digitais com sucesso.</p>
-                    <div class="flex space-x-4 mt-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                    <div>
+                        <h3 class="text-lg font-extrabold mb-3 tracking-wide text-white">Serviços</h3>
+                        <ul class="space-y-1">
+                            <li><a href="#" class="hover:text-orange-400 transition font-semibold text-sm">Fotografia</a></li>
+                            <li><a href="#" class="hover:text-orange-400 transition font-semibold text-sm">Videografia</a></li>
+                            <li><a href="#" class="hover:text-orange-400 transition font-semibold text-sm">Edição</a></li>
+                            <li><a href="#" class="hover:text-orange-400 transition font-semibold text-sm">Criação de Site</a></li>
+                        </ul>
                     </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Cursos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Todos os Cursos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Lançamentos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mais Populares</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Ofertas Especiais</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Institucional</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sobre Nós</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Trabalhe Conosco</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Termos de Uso</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Contato</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
-                            <span class="text-gray-400">contato@kiwifyacademy.com</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
-                            <span class="text-gray-400">(11) 98765-4321</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
-                            <span class="text-gray-400">São Paulo, Brasil</span>
-                        </li>
-                    </ul>
+                    <div>
+                        <h3 class="text-lg font-extrabold mb-3 tracking-wide text-white">Contato</h3>
+                        <ul class="space-y-1">
+                            <li><span class="text-gray-100 font-semibold text-sm">(34) 98830-2860</span></li>
+                            <li><span class="text-gray-100 font-semibold text-sm">yurisilva@zt1cw.onmicrosoft.com</span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2023 Kiwify Academy. Todos os direitos reservados.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2025 Mobile Vision. Todos os direitos reservados.</p>
+                <span class="text-xs text-gray-400 mt-4 md:mt-0 text-center">Esta seção é dedicada ao criador do site.</span>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script>
-        // Simple mobile menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.querySelector('.md\\:hidden.text-2xl');
-            const mobileMenu = document.createElement('div');
-            mobileMenu.className = 'hidden bg-white shadow-lg rounded-lg p-4 absolute right-4 top-20 z-50 w-64';
-            mobileMenu.innerHTML = `
-                <nav class="flex flex-col space-y-4">
-                    <a href="#inicio" class="hover:text-purple-600 transition scroll-link">Início</a>
-                    <a href="#features" class="hover:text-purple-600 transition scroll-link">Por que Kiwify?</a>
-                    <a href="#mentoria" class="hover:text-purple-600 transition scroll-link">Mentoria</a>
-                    <a href="#contato" class="hover:text-purple-600 transition scroll-link">Contato</a>
-                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition">
-                        Área do Aluno
+    <!-- Policy Modal -->
+    <div id="policy-modal" class="policy-modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none transition">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Políticas e Termos da Alegria Fest</h2>
+                    <button onclick="closePolicyModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-2xl"></i>
                     </button>
-                </nav>
-            `;
-            document.body.appendChild(mobileMenu);
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h3>1. Termos e Condições Gerais</h3>
+                    <p>A Alegria Fest é especializada na organização e realização de eventos sociais e corporativos. Ao contratar nossos serviços, o cliente concorda com os seguintes termos:</p>
+                    
+                    <h4>1.1 Reservas e Pagamentos</h4>
+                    <ul>
+                        <li>Para reservar a data do evento, é necessário o pagamento de 30% do valor total como sinal.</li>
+                        <li>O saldo restante deverá ser pago até 7 dias antes da data do evento.</li>
+                        <li>Cancelamentos com até 30 dias de antecedência terão o sinal devolvido com desconto de 10% para cobrir despesas administrativas.</li>
+                        <li>Cancelamentos com menos de 30 dias de antecedência não terão direito à devolução do sinal.</li>
+                    </ul>
+                    
+                    <h4>1.2 Alterações</h4>
+                    <p>Alterações no contrato original poderão ser feitas até 15 dias antes do evento, desde que tecnicamente viáveis. Alterações solicitadas com menos de 15 dias de antecedência poderão acarretar em custos adicionais.</p>
+                    
+                    <h3>2. Política de Privacidade</h3>
+                    <p>A Alegria Fest respeita a privacidade de seus clientes e está comprometida em proteger suas informações pessoais.</p>
+                    
+                    <h4>2.1 Coleta de Informações</h4>
+                    <p>Coletamos informações pessoais apenas quando você nos fornece voluntariamente ao solicitar orçamentos, fazer reservas ou se cadastrar em nossa newsletter. As informações coletadas podem incluir nome, endereço, e-mail, telefone e dados do evento.</p>
+                    
+                    <h4>2.2 Uso das Informações</h4>
+                    <p>As informações coletadas são utilizadas para:</p>
+                    <ul>
+                        <li>Processar reservas e fornecer os serviços contratados</li>
+                        <li>Melhorar nossos serviços e comunicação com o cliente</li>
+                        <li>Enviar informações sobre promoções e novidades (apenas para quem optou por receber)</li>
+                    </ul>
+                    
+                    <h4>2.3 Proteção de Dados</h4>
+                    <p>Implementamos medidas de segurança para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição.</p>
+                    
+                    <h3>3. Direitos Autorais</h3>
+                    <p>Todas as fotografias, vídeos e materiais criativos produzidos pela Alegria Fest durante os eventos são de nossa propriedade intelectual. O cliente recebe licença para uso pessoal das imagens, sendo proibida sua reprodução comercial sem autorização por escrito.</p>
+                    
+                    <h3>4. Responsabilidades</h3>
+                    <p>A Alegria Fest não se responsabiliza por:</p>
+                    <ul>
+                        <li>Danos ou prejuízos causados por fatores fora de nosso controle (como condições climáticas, falhas de energia, etc.)</li>
+                        <li>Comportamento de convidados ou terceiros contratados diretamente pelo cliente</li>
+                        <li>Objetos pessoais deixados no local do evento</li>
+                    </ul>
+                    
+                    <h3>5. Disposições Finais</h3>
+                    <p>Estes termos podem ser atualizados periodicamente. Recomendamos que os clientes os revisem antes de cada contratação. Caso qualquer disposição destes termos seja considerada inválida ou inexequível, as demais disposições permanecerão em pleno vigor e efeito.</p>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button onclick="closePolicyModal()" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="policy-modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none transition">
+        <div class="bg-white rounded-xl max-w-md w-full p-8 text-center">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-green-500 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Mensagem Enviada!</h3>
+            <p class="text-gray-600 mb-6">Obrigado por entrar em contato com a Alegria Fest. Nossa equipe responderá sua mensagem em breve.</p>
+            <button onclick="closeSuccessModal()" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a, button');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
+        });
+        
+        // Policy modal functions
+        function openPolicyModal() {
+            document.getElementById('policy-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePolicyModal() {
+            document.getElementById('policy-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Success modal functions
+        function openSuccessModal() {
+            document.getElementById('success-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
-                    mobileMenu.classList.add('hidden');
+            // Pega os dados do formulário
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const eventType = document.getElementById('event-type').value;
+            const mensagemCliente = document.getElementById('message').value;
+            
+            // Mensagem no formato solicitado
+            const mensagem = `📢 Novo contato pelo site! 📢\n\n━━━━━━━━━━━━━━━━━━\n👤 Nome: ${name}\n✉️ Email: ${email}\n📞 Telefone: ${phone}\n🎉 Tipo de Evento: ${eventType ? eventType.replace('-', ' ') : 'Não informado'}\n📝 Mensagem:\n${mensagemCliente || 'Não preenchida.'}\n━━━━━━━━━━━━━━━━━━\n\nAguardo seu retorno! Muito obrigado(a) 😊`;
+            
+            // Número fixo para envio (Alegria Fest)
+            const numero = '5534992499921';
+            
+            // Abre o WhatsApp Web com a mensagem pronta
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+
+            // Reset form
+            contactForm.reset();
+            // Show success message
+            openSuccessModal();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
-            });
-            // Scroll suave para links
-            document.querySelectorAll('.scroll-link').forEach(link => {
-                link.addEventListener('click', function(ev) {
-                    ev.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if(target) target.scrollIntoView({behavior:'smooth'});
-                    mobileMenu.classList.add('hidden');
-                });
             });
         });
     </script>
